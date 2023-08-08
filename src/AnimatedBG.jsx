@@ -1,4 +1,4 @@
-import Particles from 'react-tsparticles';
+// import Particles from 'react-tsparticles';
 import ParticlesBg from 'particles-bg';
 const AnimatedBG = () => {
     return ( 
