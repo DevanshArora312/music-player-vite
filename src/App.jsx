@@ -11,6 +11,7 @@ import AnimatedBG from './AnimatedBG';
 function App() {
   return (
     <Router>
+      
       <div className="App">
         <Header/>
         <div className="App-header">
