@@ -128,86 +128,70 @@ code {
   border-width: 1px;
   justify-self: center;
 }
-#login-box{
-  background:white;
-  border-radius: 20%;
-  width: 30vw;
-  height: 50vh;
+
+.acc-box{
+  /* backdrop-filter : blur(2.5px);
+  background:transparent; */
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(5px);
+  
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  border-radius: 10%;
+  min-width: 30vw;
+  min-height: 50vh;
   padding: 5px;
+  /* padding-bottom:10px; */
   text-align: center;
-  color: black;
+  color: white;
   box-shadow: 0px 7.5px 10px 0px rgba(0,255,255,0.7);
   transition: all ease 0.2s;
 }
-#login-box:hover{
+.acc-box:hover{
   transform: translateY(-5px);
   box-shadow: 0px 10px 20px 2px rgba(0,255,255,0.7);
 }
-.login-lines{
-  display: inline-block;
-  color: black;
+.acc-lines{
+  align-items:center;
+  display: flex;
+  color:white;
   justify-content: center;
+  width:100%;
+  justify-content:flex-start;
   margin:20px 10px 10px 10px;
 
 }
-.login-button{
-
+.acc-input{
+  height:1.25rem;
+  border-radius:10px;
+  padding:3px;
+  width:66%
+}
+.acc-input:focus{
+  outline :none;
+}
+.acc-button{
   background-color: transparent;
   height: 60px;
   width:7rem;
-  color: black;
+  color: white;
   font-size: 20px;
   margin-top: 3rem;
-  border-radius: 45%;
+  border-radius: 50px;
+  border: 1px solid rgba(0,255,255,0.7);
   padding: 20px;
-  border: solid 1px;
-  background: linear-gradient(55deg,rgba(0,255,255,0.7) 0%, rgba(171, 228, 228, 0.7) 55%, #ffffff 50%, #ffffff 100%);
+  /* border: solid 1px; */
+  background: linear-gradient(55deg,rgba(0,255,255,0.7) 0%, rgba(171, 228, 228, 0.7) 55%, transparent 50%, transparent 100%);
   background-size: 200% 100%;
   background-position: 100% 0;
   transition: background-position 0.3s;
 }
-.login-button:hover{
+.acc-button:hover{
   background-position: 0 0 ;
 }
+.acc-button:active{
+  transform:scale(0.95)
+}
 
-#sign-box{
-  background:white;
-  border-radius: 20%;
-  width: 30vw;
-  height: 55vh;
-  padding: 5px;
-  text-align: center;
-  color: black;
-  box-shadow: 0px 7.5px 10px 0px rgba(0,255,255,0.7);
-  transition: all ease 0.2s;
-}
-#sign-box:hover{
-  transform: translateY(-5px);
-  box-shadow: 0px 10px 20px 2px rgba(0,255,255,0.7);
-}
-.sign-lines{
-  display: inline-block;
-  color: black;
-  justify-content: center;
-  margin:15px 10px 10px 10px;
-
-}
-.sign-button{
-
-  background-color: transparent;
-  height: 60px;
-  width:7rem;
-  color: black;
-  font-size: 20px;
-  margin-top: 3rem;
-  border-radius: 45%;
-  padding: 20px;
-  border: solid 1px;
-  background: linear-gradient(55deg,rgba(0,255,255,0.7) 0%, rgba(171, 228, 228, 0.7) 55%, #ffffff 50%, #ffffff 100%);
-  background-size: 200% 100%;
-  background-position: 100% 0;
-  transition: background-position 0.3s;
-}
-.sign-button:hover{
-  background-position: 0 0 ;
-}

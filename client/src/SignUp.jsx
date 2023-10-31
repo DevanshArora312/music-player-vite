@@ -1,38 +1,68 @@
+import {useNavigate} from "react-router-dom";
+import { useState } from "react";
+
 const SignUp = () => {
+    const navigate = useNavigate();
+    const [formData,setFormData] = useState(
+        {
+            email: "",
+            password:"",
+            username:""
+        }
+    )
+    const changeHandler = e =>{
+        setFormData(prev => {
+            return(
+                {
+                    ...prev,
+                    [e.target.name] : e.target.value
+                }
+            )
+        })
+    }
+    const submitHandler = e =>{
+        e.preventDefault();
+        fetch(`http://localhost:4000/api/v1/signup`,{method:"POST",headers:{"Content-Type" : "application/json"},body:JSON.stringify({email:formData.email,password:formData.password,username:formData.username})})
+        .then( res =>{
+            return res.json();
+        })
+        .then(data => {
+            console.log(data);
+            navigate("/");
+        })
+        .catch(err => {
+            console.log(err);
+        })
+    }
     return(
-        <div id = "sign-box">
+        <form className = "acc-box" onSubmit={submitHandler}>
             <h3 style={{textAlign:"center"}}>
                 Sign-Up
             </h3>
             <div className="signCont">
-                <div className="sign-lines">
-                    <label style={{marginRight:"20px"}}>
-                        User Id:
+                <div className="acc-lines">
+                    <label style={{marginRight:"20px",width:"33%"}}>
+                        Email:
                     </label>
-                    <input>
-                    </input>
+                    <input name="email" className="acc-input" type="email" onChange={changeHandler}/>
                 </div> 
-                <div className="sign-lines">
-                    <label style={{marginRight:"20px"}}>
+                <div className="acc-lines">
+                    <label style={{marginRight:"20px",width:"33%"}}>
+                        Username:
+                    </label>
+                    <input name="username" className="acc-input" onChange={changeHandler}/>
+                </div>
+                <div className="acc-lines">
+                    <label style={{marginRight:"15px",fontSize:"20px",width:"33%"}}>
                         Password:
                     </label>
-                    <input>
-                    </input>
-                </div>
-                <div className="sign-lines">
-                    <label style={{marginRight:"15px"}}>
-                        Confirm Password:
-                    </label>
-                    <input>
-                    </input>
+                    <input className="acc-input" name= "password" type="password" onChange={changeHandler}/>
                 </div>  
                 <div>
-                    <button className="sign-button">
-                        Submit
-                    </button>
+                    <input type="submit" className="acc-button"/>
                 </div>
             </div>
-        </div>
+        </form>
     )
 } 
 export default SignUp;
