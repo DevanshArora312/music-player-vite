@@ -10,9 +10,12 @@ import Profile from './Profile';
 
 
 function App() {
+  window.onbeforeunload = ()=>{
+    localStorage.removeItem("visited-music-player");
+  }
   return (
     <Router>
-      
+
       <div className="App">
         <Header/>
         <div className="App-header">

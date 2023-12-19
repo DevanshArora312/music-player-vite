@@ -6,7 +6,12 @@ import NewPlayer from "./NewPlayer";
 import { MdOutlineClear,MdOutlineSearch } from "react-icons/md";
 
 const SearchBox = () => {
-    
+    window.onload = ()=>{
+        if (!localStorage.getItem("visited-music-player")){
+            alert("Some links may not play due to new access policy by Youtube. We are working to fix this. Sorry for the inconvinience!");
+            localStorage.setItem("visited-music-player",true)
+        }
+    }
     const [vis,setVis] = useState(null);
     const [link,setLink] = useState("");
     const searchBut = (event) =>{
