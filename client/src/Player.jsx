@@ -5,9 +5,9 @@ const Player = ({link}) => {
     // console.log(link);
     // const {source,title,thum,err_msg} =  useGetter(link);
     const [playableAudioLink,setPlayableAudioLink] = useState(null);
-    useEffect( ()=>{
+    useEffect( ()=>{https://music-player-backend-95j9.onrender.com/api/v1
         // fetch(`${import.meta.env.VITE_REACT_APP_BASE_URL}/get-link`,{method:"POST",headers:{"Content-Type" : "application/json"},body:JSON.stringify({link})})
-        fetch(`https://music-player-backend-95j9.onrender.com/api/v1/get-link`,{method:"POST",headers:{"Content-Type" : "application/json"},body:JSON.stringify({link})})
+        fetch(`${import.meta.env.VITE_REACT_APP_BASE_URL}/get-link`,{method:"POST",headers:{"Content-Type" : "application/json"},body:JSON.stringify({link})})
             .then(res => {
                 return res.json();
             })
