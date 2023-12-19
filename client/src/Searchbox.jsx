@@ -53,7 +53,9 @@ const SearchBox = () => {
                         </button>
                     </div>
                 </form>
-                {vis && <NewPlayer link = {link}/>}
+                <div className="w-full h-auto flex justify-center">
+                    {vis && <Player link = {link}/>}
+                </div>
             </div>
         </div>
      );
