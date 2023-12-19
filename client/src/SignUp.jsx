@@ -35,7 +35,7 @@ const SignUp = () => {
         })
     }
     return(
-        <form className = "acc-box" onSubmit={submitHandler}>
+        <form className = "acc-box min-w-[30vw] lphone:w-auto w-[90vw] h-auto py-8" onSubmit={submitHandler}>
             <h3 style={{textAlign:"center"}}>
                 Sign-Up
             </h3>
@@ -56,7 +56,7 @@ const SignUp = () => {
                     <label style={{marginRight:"15px",fontSize:"20px",width:"33%"}}>
                         Password:
                     </label>
-                    <input className="acc-input" name= "password" type="password" onChange={changeHandler}/>
+                    <input className="acc-input ml-1" name= "password" type="password" onChange={changeHandler}/>
                 </div>  
                 <div>
                     <input type="submit" className="acc-button"/>

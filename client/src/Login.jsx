@@ -26,6 +26,7 @@ const Login = () => {
         })
         .then(data => {
             console.log(data);
+            localStorage.setItem(import.meta.env.VITE_REACT_APP_TOKEN_NAME,JSON.stringify(token))
             navigate("/");
         })
         .catch(err => {
@@ -33,7 +34,7 @@ const Login = () => {
         })
     }
     return(
-        <form className = "acc-box" onSubmit={submitHandler}>
+        <form className = "acc-box min-w-[30vw] lphone:w-auto w-[90vw] h-auto py-8" onSubmit={submitHandler}>
             <h3 className="acc-text" style={{textAlign:"center"}}>
                 Login
             </h3>

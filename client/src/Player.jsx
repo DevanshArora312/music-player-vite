@@ -12,7 +12,7 @@ const Player = ({link}) => {
             })
             .then( data => {
                 console.log(data);
-                setPlayableAudioLink(data.data);
+                setPlayableAudioLink(data.link);
             })
             .catch(err => {
                 console.log("some error occured!!");

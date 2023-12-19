@@ -2,7 +2,7 @@
 import ParticlesBg from 'particles-bg';
 const AnimatedBG = () => {
     return ( 
-      <ParticlesBg color = {["#ffffff",""]} num={200} type="cobweb" bg={true} />
+      <ParticlesBg color = {["#ffffff",""]} num={200} type="cobweb" bg={{position:"absolute",zIndex:-2,top:0,left:0}} style={{zIndex:-3}} />
     //   <Particles
     //   params={{
     //     particles: {

@@ -11,7 +11,8 @@ exports.getLink = async(req,res) => {
     addHeader: ['referer:youtube.com', 'user-agent:googlebot']
     })
     .then(output =>{ 
-        // console.log(output);
+        console.log("enters");
+        const check = output;
         let op = [];
         output = output.formats;
         Promise.all(
@@ -21,12 +22,15 @@ exports.getLink = async(req,res) => {
                 }
             })
         )
+        
         res.status(200).json({
             ok:true,
             success : true,
-            data : op[op.length - 1].url
+            link : op[op.length - 1].url,
+            thumbnail : check.thumbnail,
+            title : check.title
         });
-        // console.log(op);
+        
     })
     .catch( err => {
         res.status(500).json(

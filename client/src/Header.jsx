@@ -1,30 +1,53 @@
+import { useEffect, useState } from 'react';
 import Sidebar from './Sidebar'
+import Hamburger from "hamburger-react"
 
-const sideBarView = () =>{
-    console.log(document.getElementById('sideBar').style.width);
-    if (document.getElementById('sideBar').style.width === "0px"){
+const Header = () => {
+    const [isOpen,setOpen] = useState(false);
+    
+    const sideBarView = () =>{
+        if (isOpen){
+            document.getElementById("sideBar").style.width = "0px";
+            document.getElementsByClassName("acc-box")[0].style.zIndex = 0;
+            document.getElementById("cover").style.display = "none";
+        }
+        else{
+            document.getElementById("sideBar").style.width = "250px";
+            document.getElementsByClassName("acc-box")[0].style.zIndex = -1;
+            document.getElementById("cover").style.display = "block";
 
-        document.getElementById("sideBar").style.width = "250px";
-        //document.getElementById("sideBar").style.display = "block"
-            
-    }
-    else{
-        document.getElementById("sideBar").style.width = "0px";
-        //document.getElementById("sideBar").style.display = "none"
+        }
+        
     }
     
-}
-const Header = () => {
+    const token = JSON.parse(localStorage.getItem(`${import.meta.env.VITE_REACT_APP_TOKEN_NAME}`));
+
+    if (token){
+        console.log("chalra");
+        if (token.expiresIn < Date.now()){
+            console.log("nahi chalna chahiye")
+            localStorage.removeItem(`${import.meta.env.VITE_REACT_APP_TOKEN_NAME}`);
+        }
+    }
     return (
-        <div style={{height:"5rem"}}>
+        <div style={{height:"5rem"}} className='sticky top-0 left-0'>
             <div id="overlay">
 
             </div>
             <div className="headBar">
                 <button className='menuButton' onClick={sideBarView}>
-                <img alt='menuBar' className = "menu" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ficon-library.com%2Fimages%2Fmenu-icon-png-3-lines%2Fmenu-icon-png-3-lines-0.jpg&f=1&nofb=1&ipt=bdace5b9476803f269117c77d27db7300d8ff07457d16dd98df846f8ec71a4f2&ipo=images"></img>
+                    <Hamburger toggled={isOpen} toggle={setOpen} size={30} />
                 </button>
-                <Sidebar />
+                {
+                    token && token.email && (Date.now() < token.expiresIn) && 
+                    <div style={{display:"flex",marginRight:"3rem"}}>
+                        <img/>
+                        <p style={{color:"blue"}}>
+                            {token.username}
+                        </p>
+                    </div>    
+                }
+                <Sidebar setOpen={setOpen} />
             </div>
         </div>
      );

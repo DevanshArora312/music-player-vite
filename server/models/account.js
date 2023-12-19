@@ -18,8 +18,14 @@ const accSchema = new mongoose.Schema(
         },
         regd : {
             type : Date,
-            required : true,
+            required : false,
             default : Date.now() 
+        },
+        role : {
+            type:String,
+            required:true,
+            enum:["Admin" , "User"],
+            default : "User"
         }
     }
 );

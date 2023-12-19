@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 body {
   margin: 0;
   /* #282c34 */
@@ -15,42 +19,35 @@ code {
 }
 
 .headBar{
-  
+  padding-bottom:8px;
   background-color: rgba(245, 53, 170);
   height: 2.5rem;
   border-radius: 20px;
   width: 100%;
+  display:flex;
+  justify-content:space-between;
+  z-index:2;
   box-shadow: 0px 7.5px 10px 0px rgba(245, 53, 170);
 }
 
-
-.menu{
-  border-radius: 50px;
-  height: 85%;
-  background: transparent;
-  margin:0.3rem;
-}
 .menuButton{
-  border-radius: 50px;
-  height: 85%;
+  padding:0px;
+  padding-left:8px;
+  height: 100%;
   background: transparent;
-  margin:0.3rem;
   border:none;
-}
-
-.menu:hover{
-  opacity:0.85;
-  background-color:rgb(205, 199, 199) ;
+  display:flex;
+  flex-direction:column;
 }
 
 #sideBar{
   /* display :none; */
   border-radius: 10px;
-  height: calc(100vh - 5rem); 
-  width: 0; 
-  position: relative; 
-  z-index: 1;
-  top: 0;
+  height: 100%; 
+  width: 0px; 
+  position: fixed; 
+  z-index: 5;
+  top: 2.7rem;
   left: 0;
   background-color: white; 
   overflow-x: hidden; 
@@ -63,14 +60,21 @@ code {
 .sideitem{
   padding: 1rem;
   font-size: 15px;
+  z-index:2;
 }
 
 #search{
   
   border-radius: 20px;
-  width:70%;
-  height: 2rem;
+  height: 2.5rem;
+  padding:2px;
+  padding-left:10px;
+  font-size:17px;
   justify-content: center;
+
+}
+#search:focus{
+  outline:none;
 }
 .mainDiv{
   
@@ -95,7 +99,6 @@ code {
   border:none;
   height: 2rem;
   width: 2rem;
-  margin-left: 1rem;
   /* margin-top: 0.5rem; */
   
 }
@@ -109,7 +112,7 @@ code {
   border:none;
   height: 2rem;
   width: 2rem;
-  margin-left: 1.5rem;
+  
   
 }
 .clear:hover{
@@ -130,8 +133,6 @@ code {
 }
 
 .acc-box{
-  /* backdrop-filter : blur(2.5px);
-  background:transparent; */
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(5px);
   
@@ -140,15 +141,13 @@ code {
   align-items:center;
   justify-content:center;
   border-radius: 10%;
-  min-width: 30vw;
-  min-height: 50vh;
-  padding: 5px;
-  /* padding-bottom:10px; */
   text-align: center;
   color: white;
   box-shadow: 0px 7.5px 10px 0px rgba(0,255,255,0.7);
   transition: all ease 0.2s;
+  z-index:0
 }
+
 .acc-box:hover{
   transform: translateY(-5px);
   box-shadow: 0px 10px 20px 2px rgba(0,255,255,0.7);
@@ -164,10 +163,13 @@ code {
 
 }
 .acc-input{
-  height:1.25rem;
   border-radius:10px;
   padding:3px;
-  width:66%
+  width:50%;
+  height:2rem;
+  font-size:15px;
+  padding:3px;
+  color:black
 }
 .acc-input:focus{
   outline :none;
@@ -181,7 +183,7 @@ code {
   margin-top: 3rem;
   border-radius: 50px;
   border: 1px solid rgba(0,255,255,0.7);
-  padding: 20px;
+  padding: 1rem;
   /* border: solid 1px; */
   background: linear-gradient(55deg,rgba(0,255,255,0.7) 0%, rgba(171, 228, 228, 0.7) 55%, transparent 50%, transparent 100%);
   background-size: 200% 100%;
@@ -195,3 +197,57 @@ code {
   transform:scale(0.95)
 }
 
+.main-box{
+  background-color:rgba(255,255,255,0.1);
+backdrop-filter:blur(5px);
+  width:60%;
+  min-width: 500px;
+  border-radius:20px;
+  border:solid 1px white;
+  padding:0;
+}
+.username-area{
+  background-color:rgba(255,255,255,0.5);
+  backdrop-filter:blur(10);
+  max-width:100%;
+  border-radius:20px;
+  border:solid 1px white;
+  padding-left:3rem;
+  display:flex;
+}
+.details{
+  display:flex;
+  min-width:100%;
+  
+  padding-right:3rem;
+  justify-content:space-around ;
+}
+.div1 .div2{
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+.divide{
+  height:auto;
+  background-color:white;
+  width:3px;
+
+}
+.prof-title{
+  transition: all ease 1s ;
+}
+.prof-title:hover{
+  text-shadow:5px 10px 4px #FFFFFF;
+  transform:translateY(-3px);
+  
+}
+
+.formbox{
+  display:"flex";
+  width:"100%";
+  flex-direction:row;
+}
+
+.icon-hov{
+  box-shadow:0px 3px 4px #FFFFFF;
+}

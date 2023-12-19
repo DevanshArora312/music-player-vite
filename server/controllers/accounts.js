@@ -1,11 +1,13 @@
 const acc = require("../models/account");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+require("dotenv").config();
 
 exports.signup = async(req,res) => {   
     try{
-        const {username,email,password,regd} = req.body;
-        const findEmail = await acc.findOne({email});
-        if (findEmail){
+        const {username,email,password,regd,role} = req.body;
+        const user = await acc.findOne({email});
+        if (user){
             res.status(400).json(
                 {
                     ok:false,
@@ -22,7 +24,7 @@ exports.signup = async(req,res) => {
         catch(err){
             console.log("Error in hashing!");
         }
-        const response = await acc.create({username,email,password:newpassword,regd});
+        const response = await acc.create({username,email,password:newpassword,regd,role});
         res.status(200).json(
             {
                 ok:true,
@@ -46,9 +48,9 @@ exports.signup = async(req,res) => {
 exports.login = async(req,res) => {   
     try{
         const {email,password} = req.body;
-        const findEmail = await acc.findOne({email});
-        if (!findEmail){
-            res.status(400).json(
+        let user = await acc.findOne({email});
+        if (!user){
+            res.status(401).json(
                 {
                     ok:false,
                     success:false,
@@ -57,34 +59,38 @@ exports.login = async(req,res) => {
             )
             return;
         }
-        let check;
-        try{
-            check = await bcrypt.compare(password,findEmail.password);
-            if (check){
-                res.status(200).json(
-                    {
-                        ok:true,
-                        success:true,
-                        data:"Login Successful!"
-                    }
-                )
-            }
-            else{
-                res.status(400).json({
-                    success:false,
-                    data:"password does not match!"
-                })
-            }
+
+        const payLoad = {
+            email : user.email,
+            id : user._id,
+            role : user.role
         }
-        catch(err){
-            console.log("Error in Comparing!");
-            res.status(500).json(
+
+        if (await bcrypt.compare(password,user.password)){
+            
+            let token = jwt.sign(payLoad,process.env.JWT_SECRET_KEY,{ expiresIn: "48h" });
+            user = user.toObject();
+            user.token = token;
+            user.password = undefined;
+            const cookieOptions = {
+                httpOnly : true,
+                expires : new Date(Date.now() + 3*60*60*1000)
+            }
+            res.cookie("token",token,cookieOptions).status(200).json(
                 {
-                    ok:false,
-                    success:false,
-                    data:"Server Error"
+                    ok:true,
+                    success:true,
+                    user,
+                    token,
+                    message:"Login Successful!"
                 }
             )
+        }
+        else{
+            res.status(403).json({
+                success:false,
+                message:"password does not match!"
+            })
         }
         
     }
