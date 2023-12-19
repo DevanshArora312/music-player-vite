@@ -22,7 +22,7 @@ const SignUp = () => {
     }
     const submitHandler = e =>{
         e.preventDefault();
-        fetch(`http://localhost:4000/api/v1/signup`,{method:"POST",headers:{"Content-Type" : "application/json"},body:JSON.stringify({email:formData.email,password:formData.password,username:formData.username})})
+        fetch(`${import.meta.env.VITE_REACT_APP_BASE_URL}/signup`,{method:"POST",headers:{"Content-Type" : "application/json"},body:JSON.stringify({email:formData.email,password:formData.password,username:formData.username})})
         .then( res =>{
             return res.json();
         })

@@ -20,7 +20,7 @@ const Login = () => {
     }
     const submitHandler = e =>{
         e.preventDefault();
-        fetch(`http://localhost:4000/api/v1/login`,{method:"POST",headers:{"Content-Type" : "application/json"},body:JSON.stringify({email:formData.email,password:formData.password})})
+        fetch(`${import.meta.env.VITE_REACT_APP_BASE_URL}/login`,{method:"POST",headers:{"Content-Type" : "application/json"},body:JSON.stringify({email:formData.email,password:formData.password})})
         .then( res =>{
             return res.json();
         })

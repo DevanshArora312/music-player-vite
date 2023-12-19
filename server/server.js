@@ -13,7 +13,7 @@ app.use("/api/v1",creatAccountRoutes);
 app.use("/api/v1/get-link",linkRoutes);
 
 app.listen(process.env.PORT,()=>{
-    console.log("listening for req");
+    console.log(`listening for req at ${process.env.PORT}`);
 })
 
 const dbConnect = require("./config/database")

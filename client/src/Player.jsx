@@ -6,7 +6,7 @@ const Player = ({link}) => {
     // const {source,title,thum,err_msg} =  useGetter(link);
     const [playableAudioLink,setPlayableAudioLink] = useState(null);
     useEffect( ()=>{
-        fetch(`http://localhost:4000/api/v1/get-link`,{method:"POST",headers:{"Content-Type" : "application/json"},body:JSON.stringify({link})})
+        fetch(`${import.meta.env.VITE_REACT_APP_BASE_URL}/get-link`,{method:"POST",headers:{"Content-Type" : "application/json"},body:JSON.stringify({link})})
             .then(res => {
                 return res.json();
             })
