@@ -17,12 +17,12 @@ exports.getLink = async(req,res) => {
         output = output.formats;
         Promise.all(
             output.map(el => {
-                if (el.resolution === "audio only"){
+                if (el.resolution === "audio only" && el.format_note == "medium"){
                     op.push(el);
                 }
             })
         )
-        
+        console.log(op);
         res.status(200).json({
             ok:true,
             success : true,
